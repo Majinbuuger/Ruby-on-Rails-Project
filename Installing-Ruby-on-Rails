@@ -1,9 +1,229 @@
 to install Ruby on Rails follow the steps below:
+What is Ruby on Rails
+Ruby on Rails is an open source framework for the programing language Ruby. It provides a large, flexible library of functions and features that have already been developed, which can easily and quickly be implemented into almost any application. It basically does for Ruby what CakePHP does for PHP or JQuery does for JavaScript.
+Ruby on Rails Tutorial: Building a Basic Ruby on Rails Web App
+Ruby on Rails is a full stack MVC web application framework. Full stack means you get everything: a simple web server you can use to test your apps, a database layer, testing framework, and an MVC based design. MVC stands for Model-View-Controller.
+Step 1: Installing Ruby on Rails to a Linux Server
+Rails Installation on Linux
+We are installing Ruby On Rails on Linux using rbenv. It is a lightweight Ruby Version Management Tool. The rbenv provides an easy installation procedure to manage various versions of Ruby, and a solid environment for developing Ruby on Rails applications.
+Follow the steps given below to install Ruby on Rails using rbenv tool.
+Step 1: Install Prerequisite Dependencies
+First of all, we have to install git - core and some ruby dependences that help to install Ruby on Rails. Use the following command for installing Rails dependencies using yum.
+**
+tp> sudo yum install -y git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl sqlite-devel
+***
+Step 2: Install rbenv
+Now we will install rbenv and set the appropriate environment variables. Use the following set of commands to get rbenv for git repository.
+**
+tp> git clone git://github.com/sstephenson/rbenv.git .rbenv
+tp> echo 'export PATH = "$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+tp> echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+tp> exec $SHELL
+
+tp> git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+tp> echo 'export PATH = "$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' << ~/.bash_profile
+tp> exec $SHELL
+***
+Step 3: Install Ruby
+Before installing Ruby, determine which version of Ruby you want to install. We will install Ruby 2.2.3. Use the following command for installing Ruby.
+**
+tp> rbenv install -v 2.2.3
+**
+Use the following command for setting up the current Ruby version as default.
+**
+tp> rbenv global 2.2.3
+**
+Use the following command to verify the Ruby version.
+**
+tp> ruby -v
+**
+Output
+**
+ruby 2.2.3p173 (2015-08-18 revivion 51636) [X86_64-linux]
+**
+Ruby provides a keyword gem for installing the supported dependencies; we call them gems. If you don't want to install the documentation for Ruby-gems, then use the following command.
+**
+tp> echo "gem: --no-document" > ~/.gemrc
+**
+Thereafter, it is better to install the Bundler gem, because it helps to manage your application dependencies. Use the following command to install bundler gem.
+**
+tp> gem install bundler
+Step 4: Install Rails
+Use the following command for installing Rails version 4.2.4.
+**
+tp> install rails -v 4.2.4
+Use the following command to make Rails executable available.
+**
+tp> rbenv rehash
+Use the following command for checking the rails version.
+**
+tp> rails -v
+Output
+**
+tp> Rails 4.2.4
+Ruby on Rails framework requires JavaScript Runtime Environment (Node.js) to manage the features of Rails. Next, we will see how we can use Node.js to manage Asset Pipeline which is a Rails feature.
+Step 5: Install JavaScript Runtime
+Let us install Node.js from the Yum repository. We will take Node.js from EPEL yum repository. Use the following command to add the EPEL package to the yum repository.
+**
+tp> sudo yum -y install epel-release
+Use the following command for installing the Node.js package.
+**
+tp> sudo yum install nodejs
+Congratulations! You are now on Rails over Linux.
+Step 6: Install Database
+By default, Rails uses sqlite3, but you may want to install MySQL, PostgreSQL, or other RDBMS. This is optional; if you have the database installed, then you may skip this step and it is not mandatory that you have a database installed to start the rails server. For this tutorial, we are using PostgreSQL database. Therefore use the following commands to install PostgreSQL.
+**
+tp> sudo yum install postgresql-server postgresql-contrib
+Accept the prompt, by responding with a y. Use the following command to create a PostgreSQl database cluster.
+**
+tp> sudo postgresql-setup initdb
+Use the following command to start and enable PostgreSQL.
+**
+tp> sudo systemctl start postgresql
+tp> sudo systemctl enable postgresql
+Keeping Rails Up-to-Date
+Assuming you have installed Rails using RubyGems, keeping it up-to-date is relatively easy. We can use the same command in both Windows and Linux platform. Use the following command –
+**
+tp> gem update rails
+Output
+The following screenshot shows a Windows command prompt. The Linux terminal also provides the same output.
+ 
+This will automatically update your Rails installation. The next time you restart your application, it will pick up this latest version of Rails. While using this command, make sure you are connected to the internet.
+Installation Verification
+You can verify if everything is set up according to your requirements or not. Use the following command to create a demo project.
+**
+tp> rails new demo
+
+First, before we do anything, we need to install Ruby on Rails somewhere. This is normally a somewhat complicated and in-depth process… but luckily, that is taken care of via a one-click SkySilk Ruby on Rails VPS.
+Once you’ve got your hardware configured, select “Apps and Tools” then find “Ruby on Rails” and select it, Now just enter the required info and hit “Go!”
+Step 2: Creating a New Directory
+So, you’re going to want to SSH into your new container and finish setting up your Ruby on Rails instance.
+Once you gain access to your container through your SSH shell, it is time to install database support. Rails has support for all the popular DB’s, but for this example, we will use SQLite because it is lightweight.
+**
+Sudo apt -get install sqlite3-devel 
+Step 3: Generating a Ruby on Rails Web App	
+The rails command creates a base application structure. All we need to do is be in a directory and run it like so:
+**
+$ cd ~/projects
+$ Rails bookshelf     ( ***this will create a new directory named bookshelf that holds our app)
+$ cd bookshelf
+
+*****
+
+39	# SQLite version 3.x
+ 
+# gem install sqlite3-ruby (not necessary on OS X Leopard)
+ 
+development:
+ 
+adapter: sqlite3
+ 
+database: db/development.sqlite3
+ 
+pool: 5
+ 
+timeout: 5000
+ 
+# Warning: The database defined as "test" will be erased and
+ 
+# re-generated from your development database when you run "rake".
+ 
+# Do not set this db to the same as development or production.
+ 
+test:
+ 
+adapter: sqlite3
+ 
+database: db/test.sqlite3
+ 
+pool: 5
+ 
+timeout: 5000
+ 
+production:
+ 
+adapter: sqlite3
+ 
+database: db/production.sqlite3
+ 
+pool: 5
+ 
+timeout: 5000
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+Notice there are different environments assigned. Rails has three modes: Development, Testing, and Production. Each has different settings and databases. Development is the default environment.
+Now we will use the /script/server command to start a simple server for our application
+***
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11	bookshelf $ ./script/server
+ 
+# then you should see something like this. Rails will start a different server depending on your platform, but it should look something like this:
+ 
+> Booting Mongrel
+ 
+> Rails 2.3.5 application starting on http://xxx.xx.xx.xxx
+ 
+> Call with -d to detach
+ 
+> Ctrl-C to shutdown server
+Time to visit the application. Point your browser to the IP address of your container to see the splash page. Now that the code is working on a basic level, it is time to delete the splash page and get started with some code.
+**
+1	bookshelf $ rm /public/index.html
+
+Step 4: Models, Controllers, and the View
+Ruby on Rails Tutorial – Step 4: Models, Controllers, and the View
+Our application needs data. This, of course, means models. Great, but how do we generate a model? Rails comes with some generators to common tasks. The generator is the file /script/generate. The generator will create our model.rb file along with a migration to add the table to the database.
+A migration file contains code to add/drop tables, or alter/add/remove columns from tables. Migrations are executed in sequence to create the tables. Run migrations (and various other commands) with “rake”. Rake is a ruby code runner. Before we get any further, let’s start by defining some basic information for the books. A book has these attributes:
+Title : String
+Thoughts : Text
+That is enough to start the application. Start by generating a model with these fields using the model generator:
+***
+bookshelf $ ./script/generate model Book title:string thoughts:text
+ 
+ 
+exists app/models/
+ 
+exists test/unit/
+ 
+exists test/fixtures/
+ 
+create app/models/book.rb
+ 
+create test/unit/book_test.rb
+ 
+create test/fixtures/books.yml
+ 
+create db/migrate
+ 
+create db/migrate/20091202052507_create_books.rb
+ 
+ 
+ Open up the migration file:
+**
+class CreateBooks < ActiveRecord::Migration def self.up create_table :books do |t| t.string :title t.text :thoughts t.timestamps end end def self.down drop_table :books end end
 
 
